@@ -21,7 +21,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 200,
             headers: {
-                "Access-Control-Allow-Origin": "*", // Enable CORS
+                "Access-Control-Allow-Origin": "https://main.d3b4yce7jxwy99.amplifyapp.com",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
