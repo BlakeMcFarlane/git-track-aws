@@ -1,1 +1,43 @@
-{}
+{
+  "api": {
+    "getAccessToken": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "getAccessTokenLambda"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "getAccessTokenLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_getAccessTokenLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getAccessTokenLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_getAccessTokenLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getAccessTokenLambda"
+        }
+      ]
+    }
+  }
+}
