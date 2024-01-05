@@ -21,7 +21,7 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
 
     if (codeParam && (localStorage.getItem("accessToken") === null)){
       async function getAccessToken() {
-        await fetch("http://localhost:4000/getAccessToken?code=" + codeParam, {
+        await fetch("https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/getAccessToken?code=" + codeParam, {
           method:"GET"
         }).then((response) => {
           return response.json()
@@ -59,7 +59,7 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
 
 
   const getUserData = async () => {
-    const response = await fetch("http://localhost:4000/getUserData", {
+    const response = await fetch("https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/getUserData", {
       method: "GET",
       headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken") }
     });

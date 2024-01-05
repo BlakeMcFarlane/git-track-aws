@@ -16,7 +16,8 @@
         "getAccessTokenLambda": {
           "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
           "s3Key": "amplify-builds/getAccessTokenLambda-79414367386d70365a58-build.zip"
-        }
+        },
+        "getUserDataLambda": {}
       },
       "api": {
         "getAccessToken": {}

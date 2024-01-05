@@ -9,6 +9,14 @@
           ],
           "category": "function",
           "resourceName": "getAccessTokenLambda"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "getUserDataLambda"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -17,6 +25,11 @@
   },
   "function": {
     "getAccessTokenLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getUserDataLambda": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

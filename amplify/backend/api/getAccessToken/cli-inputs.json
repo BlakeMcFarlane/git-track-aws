@@ -7,6 +7,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/getUserData": {
+      "name": "/getUserData",
+      "lambdaFunction": "getUserDataLambda",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }
