@@ -15,9 +15,12 @@
       "function": {
         "getAccessTokenLambda": {
           "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
-          "s3Key": "amplify-builds/getAccessTokenLambda-79414367386d70365a58-build.zip"
+          "s3Key": "amplify-builds/getAccessTokenLambda-5a39466d4b357070347a-build.zip"
         },
-        "getUserDataLambda": {}
+        "getUserDataLambda": {
+          "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
+          "s3Key": "amplify-builds/getUserDataLambda-34674146594b746e752b-build.zip"
+        }
       },
       "api": {
         "getAccessToken": {}

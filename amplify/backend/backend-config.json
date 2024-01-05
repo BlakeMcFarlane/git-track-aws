@@ -51,6 +51,22 @@
           "resourceName": "getAccessTokenLambda"
         }
       ]
+    },
+    "AMPLIFY_function_getUserDataLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getUserDataLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_getUserDataLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getUserDataLambda"
+        }
+      ]
     }
   }
 }
