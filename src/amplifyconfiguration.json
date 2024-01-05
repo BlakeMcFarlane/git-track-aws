@@ -1,0 +1,10 @@
+{
+  "aws_project_region": "us-east-2",
+  "aws_cloud_logic_custom": [
+    {
+      "name": "getAccessToken",
+      "endpoint": "https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging",
+      "region": "us-east-2"
+    }
+  ]
+}
