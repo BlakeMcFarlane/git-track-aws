@@ -10,7 +10,7 @@ build/
 dist/
 node_modules/
 #aws-exports.js
-awsconfiguration.json
+#awsconfiguration.json
 amplifyconfiguration.json
 amplifyconfiguration.dart
 amplify-build-config.json
