@@ -17,6 +17,22 @@
           ],
           "category": "function",
           "resourceName": "getUserDataLambda"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "getRepoDataLambda"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "getSearchUserDataLambda"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -25,6 +41,16 @@
   },
   "function": {
     "getAccessTokenLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getRepoDataLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getSearchUserDataLambda": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -49,6 +75,38 @@
         {
           "category": "function",
           "resourceName": "getAccessTokenLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_getRepoDataLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getRepoDataLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_getRepoDataLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getRepoDataLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_getSearchUserDataLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getSearchUserDataLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_getSearchUserDataLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getSearchUserDataLambda"
         }
       ]
     },

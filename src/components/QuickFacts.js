@@ -9,7 +9,7 @@ const QuickFacts = ({ userRepos }) => {
     useEffect(() => {
         let total = 0;
         let allLanguages = new Set();
-
+        
         userRepos.forEach(repo => {
             total += repo.totalCommits;  
             Object.keys(repo.languages || {}).forEach(language => {

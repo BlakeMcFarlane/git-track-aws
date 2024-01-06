@@ -11,7 +11,7 @@ const UserPageWrapper = (props) => {
 
     const handleSearch = async (username) => {
         try {
-            const userResponse = await fetch(`http://localhost:4000/getSearchUserData?username=${username}`, {
+            const userResponse = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getSearchUserData/${username}`, {
                 method: "GET",
                 headers: {
                     "Authorization": localStorage.getItem("accessToken")
@@ -24,7 +24,7 @@ const UserPageWrapper = (props) => {
                 setUserData(data1)
 
 
-            const response = await fetch(`http://localhost:4000/getRepoData?username=${username}`, {
+            const response = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getRepoData/${username}`, {
                 method: "GET",
                 headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken") }
             });

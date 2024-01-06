@@ -1,10 +1,12 @@
-const fetch = require('node-fetch');
+const fetch = (...args) => 
+    import ('node-fetch').then(({default: fetch}) => fetch(...args))
+
 
 exports.handler = async (event) => {
     console.log(`EVENT: ${JSON.stringify(event)}`);
 
     const authorizationHeader = event.headers.Authorization || event.headers.authorization;
-    
+    console.log("HEADER   +  " + authorizationHeader)
     try {
         const response = await fetch("https://api.github.com/user", {
             method: "GET",
@@ -18,7 +20,8 @@ exports.handler = async (event) => {
         return {
             statusCode: 200,
             headers: {
-                "Access-Control-Allow-Origin": "https://main.d3b4yce7jxwy99.amplifyapp.com",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
@@ -28,7 +31,7 @@ exports.handler = async (event) => {
 
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: "Internal server error" })
+            body: JSON.stringify({ message: error })
         };
     }
-};
+};   

@@ -13,15 +13,20 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
   const [userRepos, setUserRepos] = useState([])
   const [userChart, setUserChart] = useState()
 
+  
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString)
     const codeParam = urlParams.get('code')
     console.log("code: ", codeParam)
+    console.log("storage: ", localStorage.getItem("accessToken"))
+
+
 
     if (codeParam && (localStorage.getItem("accessToken") === null)){
       async function getAccessToken() {
-        await fetch("https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/getAccessToken?code=" + codeParam, {
+        console.log(codeParam + " - CODE")
+        await fetch("https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getAccessToken?code=" + codeParam, {
           method:"GET"
         }).then((response) => {
           return response.json()
@@ -59,7 +64,7 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
 
 
   const getUserData = async () => {
-    const response = await fetch("https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/getUserData", {
+    const response = await fetch("https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getUserData", {
       method: "GET",
       headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken") }
     });
@@ -73,13 +78,15 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
   }
 
   const getRepoData = async (username) => {
-    const response = await fetch(`http://localhost:4000/getRepoData?username=${username}`, {
+    const response = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getRepoData/${username}`, {
       method: "GET",
-      headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken") }
+      headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken")}
     });
 
-    if (!response.ok) throw new Error('Failed to fetch repository data');
+    if (!response.ok) 
+      throw new Error('Failed to fetch repository data');
     const data = await response.json();
+    console.log("DATA: ", data)
     setUserRepos(data);
   }
 

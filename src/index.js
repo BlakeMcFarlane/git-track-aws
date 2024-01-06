@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 import { Amplify } from 'aws-amplify';
-import config from './amplifyconfiguration.json';
-Amplify.configure(config);
+import amplifyconfig from './amplifyconfiguration.json';
+Amplify.configure(amplifyconfig);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
