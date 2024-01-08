@@ -3,35 +3,35 @@ import Navbar from '../components/Navbar';
 import HomePage from './HomePage';
 import { useState, useEffect } from 'react'
 
-const UserPageWrapper = (props) => {
-
+const UserPageWrapper = () => {
     const [userData, setUserData] = useState(null);         // JSON     {}
     const [userRepos, setUserRepos] = useState(null);       // Array    []
+    
 
-
+    // Function invoke on user search
     const handleSearch = async (username) => {
         try {
-            const userResponse = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getSearchUserData/${username}`, {
+            // Fetching user data from GitHub API
+            const userDataResponse = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getSearchUserData/${username}`, {
                 method: "GET",
                 headers: {
                     "Authorization": localStorage.getItem("accessToken")
                 }
             });
-
-            if (!userResponse.ok)
+            if (!userDataResponse.ok)
                 throw new Error('Failed to fetch user data');
-            const data1 = await userResponse.json()
+            const data1 = await userDataResponse.json()
                 setUserData(data1)
 
-
-            const response = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getRepoData/${username}`, {
+            // Fetching user repos from GitHub API
+            const userRepoResponse = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getRepoData/${username}`, {
                 method: "GET",
                 headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken") }
             });
 
-            if (!response.ok) 
+            if (!userRepoResponse.ok) 
                 throw new Error('Failed to fetch repository data');
-            const data = await response.json();
+            const data = await userRepoResponse.json();
                 setUserRepos(data);
             
         } catch (error) {

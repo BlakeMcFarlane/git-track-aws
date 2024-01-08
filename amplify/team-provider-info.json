@@ -31,7 +31,8 @@
         }
       },
       "api": {
-        "getAccessToken": {}
+        "getAccessToken": {},
+        "userLeaderboard": {}
       }
     }
   }
