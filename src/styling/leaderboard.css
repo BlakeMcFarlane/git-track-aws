@@ -77,8 +77,8 @@
 
 @media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .leaderboard-container {
-        height: 378px;
-        width: 350px;
+        height: 405px;
+        width: 375px;
         margin-bottom: 150px;
     }
     .leaderboard-list {

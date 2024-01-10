@@ -89,7 +89,7 @@
 
 @media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .profile-container {
-        height: 100px;
+        height: 105px;
         width: 100%;
         display: flex;
     }
@@ -109,7 +109,7 @@
     }
     
     .info {
-        width: 250px;
+        width: 255px;
         margin-left: 0px;
 
     }.profile-name {

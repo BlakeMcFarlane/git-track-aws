@@ -32,10 +32,10 @@
 
 @media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .facts-container {
-        height: 60px;
+        height: 64.5px;
         display: flex;
         justify-content: space-between;
-        width:350px;
+        width:375px;
     }
     
     .fact-box {
