@@ -1,9 +1,8 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import HomePage from './HomePage';
-import '../styling/user-page-wrapper.css'
-import { useState, useEffect } from 'react'
-
+import '../styling/user-page-wrapper.css';
+import { useState, useEffect } from 'react';
 
 const UserPageWrapper = () => {
     const [userData, setUserData] = useState(null);         // JSON     {}
@@ -34,7 +33,7 @@ const UserPageWrapper = () => {
             if (!userRepoResponse.ok) 
                 throw new Error('Failed to fetch repository data');
             const data = await userRepoResponse.json();
-                setUserRepos(data);
+            setUserRepos(data);
             
         } catch (error) {
             console.error("Failed to fetch user data:", error);
@@ -49,4 +48,3 @@ const UserPageWrapper = () => {
     };
 
 export default UserPageWrapper;
- 
