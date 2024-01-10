@@ -29,3 +29,37 @@
     font-size: 9pt;
     margin-top: -10px;
 }
+
+@media (max-width: 375px) { /* Adjust 1199px to one pixel less than your breakpoint */
+    .facts-container {
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        width:350px;
+    }
+    
+    .fact-box {
+        background-color: #24292e;
+        height: 100%;
+        width:23%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 8px 8px 8px 8px;
+        font-family: 'Bebas Neue', sans-serif;
+        box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.301);
+    }
+    
+    .fact-box h1{
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 30pt;
+        color: #fafbfc
+    }
+    
+    .fact-box p{
+        color:#2dba4e;
+        font-size: 7pt;
+        margin-top: -13px;
+    }
+}

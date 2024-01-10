@@ -27,7 +27,7 @@ const ProfileInfo = ({ userData, userFriends }) => {
     }
 
     // Format the account age
-    const accountAge = `${years} year${years !== 1 ? 's' : ''} and ${months} month${months !== 1 ? 's' : ''}`;
+    const accountAge = `${years} yr${years !== 1 ? 's' : ''} & ${months} mth${months !== 1 ? 's' : ''}`;
 
 
     return (
@@ -42,15 +42,15 @@ const ProfileInfo = ({ userData, userFriends }) => {
                 <div className='profile-stats'>
                     <div className='stat'>
                         <p>repositories</p>
-                        <p id='value'>{userData.public_repos}</p>
+                        <p className='value'>{userData.public_repos}</p>
                     </div>
                     <div className='stat'>
                         <p>friends</p>
-                        <p id='value'>{userFriends.length}</p>
+                        <p className='value'>{userFriends.length}</p>
                     </div>
                     <div className='stat'>
                         <p>account Age</p>
-                        <p id='value' style={{ fontSize: "12pt" }}>{accountAge}</p>
+                        <p className='value'>{accountAge}</p>
                     </div> 
                     <div className='stat-bio'>
                         <p className='bio-key'>bio</p>
