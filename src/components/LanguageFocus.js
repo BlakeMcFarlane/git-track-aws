@@ -1,8 +1,9 @@
 import React from 'react';
 import '../styling/language-focus.css';
 import { ReactComponent as GitHubLogo } from '../assets/github.svg'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
-const LanguageFocus = ({ language, languageRatio, repos }) => {
+const LanguageFocus = ({ language, languageRatio, repos, isLoading }) => {
 
     const MAX_LENGTH_FOR_LARGE_FONT = 12; // Set your threshold
     const largeFontSize = '14px'; // Larger font size
@@ -10,9 +11,12 @@ const LanguageFocus = ({ language, languageRatio, repos }) => {
 
 
     return (
+        <SkeletonTheme baseColor='#393f44' highlightColor='#666666' duration={2} >
         <div className='lang-container'>
             <div className='header'>
-                <h1>{language}</h1>
+                {isLoading ? (<Skeleton className='language-skeleton'/>):
+                (<h1>{language}</h1>)
+                }
                 <div className='ratio-container'>
                     <div className='ratio'>
                         <p>{languageRatio}</p><h2>%</h2>
@@ -46,7 +50,9 @@ const LanguageFocus = ({ language, languageRatio, repos }) => {
                 </div>
             </div>
         </div>
+        </SkeletonTheme>
     );
+    
 };
 
 export default LanguageFocus;

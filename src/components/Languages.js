@@ -3,6 +3,7 @@ import '../styling/languages.css'
 import './LanguageFocus'
 import { useState, useEffect } from 'react'
 import LanguageFocus from './LanguageFocus'
+import Skeleton, { SkeletonTheme} from 'react-loading-skeleton'
 
 
 const findLargestReposByLanguage = (repos) => {
@@ -21,13 +22,12 @@ const findLargestReposByLanguage = (repos) => {
 };
 
 
-const Languages = ({ userRepos, userChart }) => {
+const Languages = ({ userRepos, isLoading }) => {
     const [topLanguages, setTopLanguages] = useState([]);
     const [selectedLanguage, setSelectedLanguage] = useState();
     const [selectedLanguageRatio, setSelectedLanguageRatio] = useState();
     const [languageRepos, setLanguageRepos] = useState([]); // New state for repositories of the selected language
     const [largestRepoByLanguage, setLargestRepoByLanguage] = useState({});
-
 
     const colors = ['#FF6666', '#63618E', '#FFA500', '#20B2AA', '#FFD700', '#D3FFCE', '#F633FF', '#FF8833', '#33FF88', '#8833FF'];
 
@@ -87,6 +87,7 @@ const Languages = ({ userRepos, userChart }) => {
     };
 
     return (
+        <SkeletonTheme baseColor='#393f44' highlightColor='#666666' duration={2} borderRadius={5}>
         <div className='language-container'>
             <div className='languages'>
                 <div className='language-list'>
@@ -95,12 +96,25 @@ const Languages = ({ userRepos, userChart }) => {
                     </div>
                     <div className='list'>
                         <ol className='language'>
-                            {topLanguages.map(([language, _percentage], index) => (
-                                <li key={index} className='language-item' onClick={() => handleLanguageClick(language)}>
-                                    <div className='language-color' style={{ backgroundColor: colors[index % colors.length] }}></div>
-                                    <a><span className='language-name'>{language}</span></a>
-                                </li>
-                            ))}
+                            {isLoading ? (
+                                <>
+                                    <li className='language-item-skeleton'><Skeleton width={120}/></li>
+                                    <li className='language-item-skeleton'><Skeleton width={80}/></li>
+                                    <li className='language-item-skeleton'><Skeleton width={100}/></li>
+                                    <li className='language-item-skeleton'><Skeleton width={140}/></li>
+                                    <li className='language-item-skeleton'><Skeleton width={130}/></li>
+                                    
+
+                                </>
+                            ): 
+                                topLanguages.map(([language, _percentage], index) => (
+                                    <li key={index} className='language-item' onClick={() => handleLanguageClick(language)}>
+                                        <div className='language-color' style={{ backgroundColor: colors[index % colors.length] }}></div>
+                                        <a><span className='language-name'>{language}</span></a>
+                                    </li>
+                                ))
+                            }
+                        
                         </ol>
                     </div>
                 </div>
@@ -110,26 +124,32 @@ const Languages = ({ userRepos, userChart }) => {
                         language={selectedLanguage}
                         languageRatio={selectedLanguageRatio}
                         repos={largestRepoByLanguage[selectedLanguage] ? [largestRepoByLanguage[selectedLanguage]] : []}
+                        isLoading={isLoading}
                     />
                     </div>
                 </div>
             </div>
             <div className='language-bar-container'>
-                <div className='language-bar'>
-                    {topLanguages.map(([language, percentage], index) => (
-                        <div 
-                            key={index} 
-                            className='language-bar-item' 
-                            style={{ 
-                                width: `${percentage}%`, 
-                                backgroundColor: colors[index % colors.length]
-                            }}
-                        >
-                        </div>
-                    ))}
-                </div>
+                {isLoading ? (
+                    <Skeleton className='language-bar-skeleton' containerClassName='language-bar-container'/>
+                ) : (
+                    <div className='language-bar'>
+                        {topLanguages.map(([language, percentage], index) => (
+                            <div 
+                                key={index} 
+                                className='language-bar-item' 
+                                style={{ 
+                                    width: `${percentage}%`, 
+                                    backgroundColor: colors[index % colors.length]
+                                }}
+                            >
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
+        </SkeletonTheme>
     )
 }
 

@@ -3,10 +3,12 @@ import '../styling/leaderboard.css';
 
 const Leaderboard = ({ userRankings }) => {
 
+  
   return (
     <div className='leaderboard-container'>
       <div className='label'>
         <h1>Leaderboard</h1>
+        <h4>{userRankings.length} Git Trackers</h4>
       </div>
       <div className='title-container'>
         <div className='title'>

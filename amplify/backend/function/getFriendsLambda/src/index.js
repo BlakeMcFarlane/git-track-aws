@@ -22,6 +22,11 @@ exports.handler = async (event) => {
         })
         const followers = await followersList.json()
 
+        if (!Array.isArray(followers) || !Array.isArray(following)) {
+            console.error('Expected arrays but got:', { followers, following });
+            throw new Error('Invalid response format from GitHub API 69');
+        }
+
         const mutual = followers.filter(follower => following.some(following => following.login === follower.login));
 
         return {

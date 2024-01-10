@@ -108,7 +108,10 @@
     margin:0;
     padding-right: 10px;
 }
-
+.language-skeleton {
+    width:140px;
+    height:28px
+}
 @media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .lang-container {
         background-color: #2b3137;

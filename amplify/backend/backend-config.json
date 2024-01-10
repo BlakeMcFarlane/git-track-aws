@@ -33,14 +33,6 @@
           ],
           "category": "function",
           "resourceName": "getSearchUserDataLambda"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "getFriendsLambda"
         }
       ],
       "providerPlugin": "awscloudformation",

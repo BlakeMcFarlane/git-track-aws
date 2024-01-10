@@ -40,6 +40,7 @@
 @media (max-width: 1199px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .main-container {
         row-gap: 50px; /* Sets the gap between rows */
+        position:initial;
     }
     .bottom-right {
         margin-left: 0px;
@@ -49,6 +50,7 @@
 @media (max-width: 1490px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .main-container {
         row-gap: 50px; /* Sets the gap between rows */
+        position:initial;
     }
 }
 

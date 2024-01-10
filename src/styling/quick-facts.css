@@ -29,7 +29,15 @@
     font-size: 9pt;
     margin-top: -10px;
 }
-
+.rank {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+.rank p {
+    color: #fafbfcb9;
+    font-size: 14pt;
+}
 @media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .facts-container {
         height: 64.5px;

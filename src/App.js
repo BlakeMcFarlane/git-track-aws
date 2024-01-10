@@ -5,9 +5,7 @@ import {
 } from "react-router-dom"
 import LoginPage from './pages/LoginPage.js'
 import './styling/App.css';
-import Navbar from './components/Navbar'
-import HomePage from './pages/HomePage'
-import React, { useState } from 'react'
+import React from 'react'
 import UserPageWrapper from "./pages/userPageWrapper.js";
 
 

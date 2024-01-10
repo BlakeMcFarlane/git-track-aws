@@ -14,17 +14,22 @@ import {
   createUserLeaderboard as createUserLeaderboardMutation,
 } from '../graphql/mutations';
 
+// Skeleton library
+
 
 const client = generateClient();
 
 
 const HomePage = ({ searchUserData, searchUserRepos }) => {
-  const [users, setUsers] = useState([]);             // GraphQL API Leaderboard
-  const [rerender, setRerender] = useState(false)
+  const [users, setUsers] = useState([]);               // GraphQL API Leaderboard | Array of objects
+  const [rerender, setRerender] = useState(false)       
   const [userData, setUserData] = useState({})
   const [userRepos, setUserRepos] = useState([])
-  const [userChart, setUserChart] = useState()
-  const [userFriends, setUserFriends] = useState({})
+  const [userRank, setUserRank] = useState(0)
+  const [suffix, setSuffix] = useState('th');
+  const [isLoading, setIsLoading] = useState(false);
+
+
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -33,13 +38,11 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
 
     if (codeParam && (localStorage.getItem("accessToken") === null)){
       async function getAccessToken() {
-        console.log(codeParam + " - CODE")
         await fetch("https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getAccessToken?code=" + codeParam, {
           method:"GET"
         }).then((response) => {
           return response.json()
         }).then((data) => {
-          console.log(data);
           if(data.access_token) {
             localStorage.setItem("accessToken", data.access_token)
             setRerender(!rerender)
@@ -48,71 +51,99 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
       }
       getAccessToken()
     }
-    
+
+    // Fetches user and repo data
     const fetchData = async () => {
+      setIsLoading(true); // Start loading
+
       let userInfo;
-      let userFriendData;
       let repoScoreInfo;
       try {
         if (searchUserData){
-          userInfo = await searchUserDataSet(searchUserData)
+          userInfo = await searchUserDataSet(searchUserData);
+          fetchUsers(userInfo.login)
         }
         else {
           userInfo = await getUserData();
+          fetchUsers(userInfo.login)
         }
         repoScoreInfo = await getRepoData(userInfo.login)
-        userFriendData = await getFriends(userInfo.login)
-        console.log(userFriendData)
         userExist(userInfo.login, userInfo.avatar_url, repoScoreInfo, userInfo.location)
-        console.log(userInfo)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
+      setIsLoading(false); // End loading
     };
-    
     fetchData();
-    getUserChart(userData.login)
 
-  }, []);
+  }, [searchUserData, ]);
   
   async function searchUserDataSet(searchUserData) {
     setUserData(searchUserData);
     return searchUserData
   }
 
+  // When invoked, function checks if user is in DB, if not invokes createUser()
   async function userExist(username, profile_pic, repoScoreInfo, location) {
     try {
+      // Query the user by name from GraphQL DB
       const curUser = await client.graphql({ 
         query: userByName,
         variables: { name: username }
       });
   
+      // Checks if user was found in DB
       if (curUser.data.userByName.items.length > 0) {
-        console.log("User exists:", curUser.data.userByName.items[0].name);
-        fetchUsers();
-      } else {
-        console.log("User does not exist, creating user");
+        fetchUsers(username);
+      } else {      
+        // Creates user if not found in leaderboard database
         await createUser(username, profile_pic, repoScoreInfo, location).then(fetchUsers)
+        fetchUsers(username);
       }
     } catch (error) {
       console.error('Error in userExist:', error);
     }
   }
   
-// This function generates the GraphQL leaderboard
-  async function fetchUsers() {
+  // This function generates the GraphQL leaderboard
+  async function fetchUsers(username) {
+    let userRank;
     try {
+      // Query all users and sort by score from highest to lowest
       const userData = await client.graphql({ 
-        query: usersByScore,
-        variables: { type:"userLeaderboard", sortDirection:"DESC", limit:10 }
+          query: usersByScore,
+          variables: { type: "userLeaderboard", sortDirection: "DESC" }
       });
       const usersFromAPI = userData.data.usersByScore.items;
-      console.log("USERS + " + usersFromAPI)
       setUsers(usersFromAPI);
+
+      // Find the index of the user with the matching name
+      userRank = usersFromAPI.findIndex(user => user.name === username) + 1;
+
+      // Logic required to get suffix 
+      const j = userRank % 10;
+      const k = userRank % 100;
+      
+      if (j === 1 && k !== 11) {
+        setSuffix("st");
+      }
+      else if (j === 2 && k !== 12) {
+        setSuffix("nd");
+      }
+      else if (j === 3 && k !== 13) {
+        setSuffix("rd");
+      }
+      else
+        setSuffix("th")
+    
+      setUserRank(userRank);
+
+      console.log("User Rank: ", userRank); // Add this line to log the rank
     } catch (err) {
       console.error('Error fetching users:', err);
     }
   }
+
 
   async function createUser(username, profile_pic, repoScoreInfo, location) {
     let score = 0;
@@ -127,21 +158,14 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
       type: "userLeaderboard",
       location: location
     };
-    console.log("IMAGE + "+profile_pic)
     try {
       const newUser = await client.graphql({
         query: createUserLeaderboardMutation,
         variables: { input: userToCreate }
       });
-      console.log('User created:', newUser);
     } catch (error) {
       console.error('Error creating user:', error);
     }
-  }
-
-  const getUserChart = async (username) => {
-    const chartURL = <img src={`https://ghchart.rshah.org/${username}`} alt="Name Your Github chart" />
-    setUserChart(chartURL)
   }
 
 
@@ -189,45 +213,26 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
       length: 10 * data.length,    // Number of repos
       size: reposSize,             // Size of all repos [languages per repo, forks per repo, description]
     }
-    console.log("DATA: ", Object.keys(data[0].languages).length)
     setUserRepos(data);
+    console.log("DATA: +++ ", data)
     return allRepoData
   }
 
-  // When invoked, function retrives JSON of users followers and followings.
-  const getFriends = async (username) => {
-    let data;
-    console.log("USERSSSSSSS   ", username)
-    const response = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getFriends/${username}`, {
-        method: "GET",
-        headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken") },
-    });
-    if (!response.ok) {
-        throw new Error('Failed to fetch friend data');
-    }
-    console.log("SAMPLE: ", response)
-    data = await response.json();
-    console.log("FRIENDS COUNT + ", data.length)
-
-    setUserFriends(data)
-
-    return data
-  };
 
   return (
     <div className='main-container'>
       <div className='top-left'>
         { searchUserData ? (
-          <ProfileInfo userData={ searchUserData } userFriends={userFriends}/>
+          <ProfileInfo userData={ searchUserData } />
         ) : (
-          <ProfileInfo userData={ userData } userFriends={userFriends}/>
+          <ProfileInfo userData={ userData } />
         )}
       </div>
       <div className='top-right'>
         { searchUserRepos ? (
-          <QuickFacts userRepos={ searchUserRepos }/>
+          <QuickFacts userRepos={ searchUserRepos } userRank={ userRank } suffix={ suffix } isLoading={isLoading}/>
         ) : (
-          <QuickFacts userRepos={ userRepos }/>
+          <QuickFacts userRepos={ userRepos } userRank={ userRank } suffix={ suffix } isLoading={isLoading}/>
         )}
         { searchUserData ? (
           <Badges userData={ searchUserData }/>
@@ -237,9 +242,9 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
       </div>
       <div className='bottom-left'>
       { searchUserRepos ? (
-          <Languages userRepos={ searchUserRepos } />
+          <Languages userRepos={ searchUserRepos } isLoading={isLoading}/>
         ) : (
-          <Languages userRepos={ userRepos } />
+          <Languages userRepos={ userRepos } isLoading={isLoading}/>
         )}
       </div>
       <div className='bottom-right'>

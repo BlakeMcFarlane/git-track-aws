@@ -84,6 +84,20 @@
     font-size: 14px;
     font-family: 'Bebas Neue', sans-serif;
 }
+.language-item-skeleton {
+    height: 24px;
+    padding-bottom: 10px;
+    padding-left:10px
+
+}
+.language-bar-skeleton {
+    width:90%;
+    height:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+}
 
 
 @media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */

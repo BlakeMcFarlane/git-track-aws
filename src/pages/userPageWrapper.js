@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import HomePage from './HomePage';
 import '../styling/user-page-wrapper.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const UserPageWrapper = () => {
     const [userData, setUserData] = useState(null);         // JSON     {}
@@ -21,8 +21,8 @@ const UserPageWrapper = () => {
             });
             if (!userDataResponse.ok)
                 throw new Error('Failed to fetch user data');
-            const data1 = await userDataResponse.json()
-                setUserData(data1)
+            const searchedUser = await userDataResponse.json()
+            setUserData(searchedUser)
 
             // Fetching user repos from GitHub API
             const userRepoResponse = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getRepoData/${username}`, {
@@ -41,7 +41,7 @@ const UserPageWrapper = () => {
     };
     return (
             <div className='page-wrapper'>
-                <Navbar onSearch={ handleSearch }/>
+                <Navbar onSearch={ handleSearch } />
                 <HomePage searchUserData={ userData } searchUserRepos={ userRepos } />
             </div>
     );

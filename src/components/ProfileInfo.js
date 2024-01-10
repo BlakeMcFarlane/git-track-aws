@@ -1,8 +1,7 @@
 import React from 'react'
 import '../styling/profile-info.css'
-import { useEffect, useState } from 'react'
 
-const ProfileInfo = ({ userData, userFriends }) => {
+const ProfileInfo = ({ userData, userFriends, userRank }) => {
 
 
     const now = new Date();
@@ -45,8 +44,8 @@ const ProfileInfo = ({ userData, userFriends }) => {
                         <p className='value'>{userData.public_repos}</p>
                     </div>
                     <div className='stat'>
-                        <p>friends</p>
-                        <p className='value'>{userFriends.length}</p>
+                        <p>followers</p>
+                        <p className='value'>{userData.followers}</p>
                     </div>
                     <div className='stat'>
                         <p>account Age</p>
