@@ -39,10 +39,12 @@ const UserPageWrapper = () => {
         }
     };
     return (
-        <div>
-            <Navbar onSearch={ handleSearch }/>
-            <HomePage searchUserData={ userData } searchUserRepos={ userRepos } />
-        </div>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+            <div>
+                <Navbar onSearch={ handleSearch }/>
+                <HomePage searchUserData={ userData } searchUserRepos={ userRepos } />
+            </div>
+        </meta>
     );
     };
 
