@@ -1,13 +1,9 @@
 import React from 'react'
 import '../styling/profile-info.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-const ProfileInfo = ({ userData }) => {
+const ProfileInfo = ({ userData, userFriends }) => {
 
-    useEffect(() => {
-        getFriends(userData.login)
-
-    },[])
 
     const now = new Date();
     const creationDate = new Date(userData.created_at); // Parse the creation date
@@ -34,22 +30,6 @@ const ProfileInfo = ({ userData }) => {
     const accountAge = `${years} year${years !== 1 ? 's' : ''} and ${months} month${months !== 1 ? 's' : ''}`;
 
 
-    const getFriends = async (username) => {
-        let data;
-        console.log("USERSSSSSSS   ", username)
-        const response = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getFriends/`, {
-            method: "GET",
-            headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken"), 
-                        "Name":"blakemcfarlane"
-                },
-        });
-        if (!response.ok) {
-            throw new Error('Failed to fetch friend data');
-        }
-        data = await response.json();
-        console.log("FRIENDS = " + data)
-    };
-
     return (
         <div className='profile-container'>
             <div className='profile-pic'>
@@ -66,7 +46,7 @@ const ProfileInfo = ({ userData }) => {
                     </div>
                     <div className='stat'>
                         <p>friends</p>
-                        <p id='value'>{userData.following}</p>
+                        <p id='value'>{userFriends.length}</p>
                     </div>
                     <div className='stat'>
                         <p>account Age</p>

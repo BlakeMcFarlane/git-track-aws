@@ -24,8 +24,7 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
   const [userData, setUserData] = useState({})
   const [userRepos, setUserRepos] = useState([])
   const [userChart, setUserChart] = useState()
-  const [userScore, setUserScore] = useState()
-
+  const [userFriends, setUserFriends] = useState({})
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -52,6 +51,7 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
     
     const fetchData = async () => {
       let userInfo;
+      let userFriendData;
       let repoScoreInfo;
       try {
         if (searchUserData){
@@ -61,7 +61,8 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
           userInfo = await getUserData();
         }
         repoScoreInfo = await getRepoData(userInfo.login)
-
+        userFriendData = await getFriends(userInfo.login)
+        console.log(userFriendData)
         userExist(userInfo.login, userInfo.avatar_url, repoScoreInfo, userInfo.location)
         console.log(userInfo)
       } catch (error) {
@@ -72,7 +73,7 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
     fetchData();
     getUserChart(userData.login)
 
-  }, [searchUserData]);
+  }, []);
   
   async function searchUserDataSet(searchUserData) {
     setUserData(searchUserData);
@@ -193,13 +194,33 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
     return allRepoData
   }
 
+  // When invoked, function retrives JSON of users followers and followings.
+  const getFriends = async (username) => {
+    let data;
+    console.log("USERSSSSSSS   ", username)
+    const response = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getFriends/${username}`, {
+        method: "GET",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken") },
+    });
+    if (!response.ok) {
+        throw new Error('Failed to fetch friend data');
+    }
+    console.log("SAMPLE: ", response)
+    data = await response.json();
+    console.log("FRIENDS COUNT + ", data.length)
+
+    setUserFriends(data)
+
+    return data
+  };
+
   return (
     <div className='main-container'>
       <div className='top-left'>
         { searchUserData ? (
-          <ProfileInfo userData={ searchUserData } />
+          <ProfileInfo userData={ searchUserData } userFriends={userFriends}/>
         ) : (
-          <ProfileInfo userData={ userData } />
+          <ProfileInfo userData={ userData } userFriends={userFriends}/>
         )}
       </div>
       <div className='top-right'>

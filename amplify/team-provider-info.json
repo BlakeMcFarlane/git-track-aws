@@ -31,7 +31,7 @@
         },
         "getFriendsLambda": {
           "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
-          "s3Key": "amplify-builds/getFriendsLambda-576570517a6d4f486a53-build.zip"
+          "s3Key": "amplify-builds/getFriendsLambda-542b42544f6175356637-build.zip"
         }
       },
       "api": {
