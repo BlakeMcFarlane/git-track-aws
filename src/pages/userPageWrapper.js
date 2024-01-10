@@ -32,7 +32,7 @@ const UserPageWrapper = () => {
             });
 
             if (!userRepoResponse.ok) 
-user-page-wrapper                throw new Error('Failed to fetch repository data');
+                throw new Error('Failed to fetch repository data');
             const data = await userRepoResponse.json();
                 setUserRepos(data);
             
