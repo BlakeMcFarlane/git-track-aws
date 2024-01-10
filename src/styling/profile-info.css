@@ -87,7 +87,7 @@
     font-weight: 200;
 }
 
-@media (max-width: 375px) { /* Adjust 1199px to one pixel less than your breakpoint */
+@media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .profile-container {
         height: 100px;
         width: 100%;

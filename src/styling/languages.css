@@ -86,7 +86,7 @@
 }
 
 
-@media (max-width: 375px) { /* Adjust 1199px to one pixel less than your breakpoint */
+@media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .language-container {
         background-color: #24292e;
         height: 400px;
