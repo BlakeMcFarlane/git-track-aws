@@ -1,8 +1,8 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import HomePage from './HomePage';
-import { useState, useEffect } from 'react'
 import '../styling/user-page-wrapper.css'
+import { useState, useEffect } from 'react'
 
 
 const UserPageWrapper = () => {
@@ -49,3 +49,4 @@ const UserPageWrapper = () => {
     };
 
 export default UserPageWrapper;
+ 
