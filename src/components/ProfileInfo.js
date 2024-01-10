@@ -6,7 +6,8 @@ const ProfileInfo = ({ userData }) => {
 
     useEffect(() => {
         getFriends(userData.login)
-    })
+
+    },[])
 
     const now = new Date();
     const creationDate = new Date(userData.created_at); // Parse the creation date
@@ -35,16 +36,18 @@ const ProfileInfo = ({ userData }) => {
 
     const getFriends = async (username) => {
         let data;
+        console.log("USERSSSSSSS   ", username)
         const response = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getFriends/`, {
             method: "GET",
-            headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken")},
-            username:username
+            headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken"), 
+                        "Name":"blakemcfarlane"
+                },
         });
         if (!response.ok) {
             throw new Error('Failed to fetch friend data');
         }
         data = await response.json();
-        console.log(data)
+        console.log("FRIENDS = " + data)
     };
 
     return (
