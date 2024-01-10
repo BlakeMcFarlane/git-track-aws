@@ -109,7 +109,7 @@
     padding-right: 10px;
 }
 
-@media (max-width: 375px) { /* Adjust 1199px to one pixel less than your breakpoint */
+@media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .lang-container {
         background-color: #2b3137;
         height:100%;
