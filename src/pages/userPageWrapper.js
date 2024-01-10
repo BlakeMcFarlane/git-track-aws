@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import HomePage from './HomePage';
 import { useState, useEffect } from 'react'
+import '../styling/user-page-wrapper.css'
+
 
 const UserPageWrapper = () => {
     const [userData, setUserData] = useState(null);         // JSON     {}
@@ -30,7 +32,7 @@ const UserPageWrapper = () => {
             });
 
             if (!userRepoResponse.ok) 
-                throw new Error('Failed to fetch repository data');
+user-page-wrapper                throw new Error('Failed to fetch repository data');
             const data = await userRepoResponse.json();
                 setUserRepos(data);
             
@@ -39,7 +41,7 @@ const UserPageWrapper = () => {
         }
     };
     return (
-            <div>
+            <div className='page-wrapper'>
                 <Navbar onSearch={ handleSearch }/>
                 <HomePage searchUserData={ userData } searchUserRepos={ userRepos } />
             </div>
