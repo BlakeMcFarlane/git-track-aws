@@ -187,5 +187,19 @@
         font-size: 14px;
         font-family: 'Bebas Neue', sans-serif;
     }
+    .language-item-skeleton {
+        height: 10px;
+        margin-bottom: 10px;
+        padding-left:0px
+    
+    }
+    .language-bar-skeleton {
+        width:90%;
+        height:10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0;
+    }
     
 }

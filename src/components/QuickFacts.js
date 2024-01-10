@@ -33,10 +33,10 @@ const QuickFacts = ({ userRepos, userRank, suffix, isLoading }) => {
             <div className='facts-container'>
                 {isLoading ? (
                     <>
-                        <div className='fact-box'><Skeleton height={100} /></div>
-                        <div className='fact-box'><Skeleton height={100} /></div>
-                        <div className='fact-box'><Skeleton height={100} /></div>
-                        <div className='fact-box'><Skeleton height={100} /></div>
+                        <div className='fact-box'><Skeleton height={64.5} /></div>
+                        <div className='fact-box'><Skeleton height={64.5} /></div>
+                        <div className='fact-box'><Skeleton height={64.5} /></div>
+                        <div className='fact-box'><Skeleton height={64.5} /></div>
                     </>
                 ) : (
                     <>

@@ -99,7 +99,6 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    
 }
 
 .git-logo {
@@ -129,7 +128,6 @@
         font-family: 'Bebas Neue', sans-serif;
         margin-left: 10px;
         align-items: center;
-    
     }
     .header h1 {
         color:aliceblue;
@@ -144,7 +142,6 @@
         margin-right:5px
     }
     
-    
     .ratio {
         height:80%;
         width:80%;
@@ -153,14 +150,12 @@
         align-items: baseline;
         justify-content: center;
         color:rgb(105, 104, 104);
-        font-size: 8pt;
-        
+        font-size: 8pt; 
     }
     .ratio p {
         color:rgb(105, 104, 104);
         font-family: 'Bebas Neue', sans-serif;
         font-size: 17pt;
-    
     }
     
     .body {
@@ -170,13 +165,10 @@
     .lang-body {
         height:50%
     }
-    
-    
     .repos {
         height:30%;
         display: flex;
         justify-content: center;
-    
     }
     .repo {
         height:90%;
@@ -184,6 +176,7 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
+        flex-direction: column;
     }
     .repo p {
         margin: 0;
@@ -191,12 +184,11 @@
         font-family: 'Roboto Mono', monospace;
         color:rgba(240, 248, 255, 0.74);
         font-size: 10pt;
-    
     }
     .top-repo {
         background-color: rgb(29, 29, 29);
-        width:70%;
-        height:80%;
+        width:100%;
+        height:60%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -224,6 +216,10 @@
         padding: 0;
         margin:0;
         padding-right: 10px;
+    }
+    .language-skeleton {
+        width:100px;
+        height:28px
     }
     
 }

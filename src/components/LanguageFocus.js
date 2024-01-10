@@ -5,8 +5,8 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 const LanguageFocus = ({ language, languageRatio, repos, isLoading }) => {
 
-    const MAX_LENGTH_FOR_LARGE_FONT = 12; // Set your threshold
-    const largeFontSize = '14px'; // Larger font size
+    const MAX_LENGTH_FOR_LARGE_FONT = 10; // Set your threshold
+    const largeFontSize = '10px'; // Larger font size
     const smallFontSize = '1px'; // Smaller font size
 
 
@@ -44,7 +44,7 @@ const LanguageFocus = ({ language, languageRatio, repos, isLoading }) => {
                                 );
                             })
                         ) : (
-                            <p>No repositories to display.</p>
+                            <p>loading</p>
                         )}
                     </div>
                 </div>

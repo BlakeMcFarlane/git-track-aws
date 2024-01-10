@@ -98,13 +98,11 @@ const Languages = ({ userRepos, isLoading }) => {
                         <ol className='language'>
                             {isLoading ? (
                                 <>
-                                    <li className='language-item-skeleton'><Skeleton width={120}/></li>
-                                    <li className='language-item-skeleton'><Skeleton width={80}/></li>
-                                    <li className='language-item-skeleton'><Skeleton width={100}/></li>
-                                    <li className='language-item-skeleton'><Skeleton width={140}/></li>
-                                    <li className='language-item-skeleton'><Skeleton width={130}/></li>
-                                    
-
+                                    <Skeleton className='language-item-skeleton' width={80}/>
+                                    <Skeleton className='language-item-skeleton' width={100}/>
+                                    <Skeleton className='language-item-skeleton' width={105}/>
+                                    <Skeleton className='language-item-skeleton' width={95}/>
+                                    <Skeleton className='language-item-skeleton' width={120}/>
                                 </>
                             ): 
                                 topLanguages.map(([language, _percentage], index) => (
