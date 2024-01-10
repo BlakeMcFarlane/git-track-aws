@@ -60,3 +60,17 @@
     text-overflow: ellipsis;
     width:100px
 }
+
+@media (max-width: 1199px) { /* Adjust 1199px to one pixel less than your breakpoint */
+    .leaderboard-container {
+        height: 620px;
+        width: 682px;
+    }
+
+}
+@media (max-width: 1490px) { /* Adjust 1199px to one pixel less than your breakpoint */
+    .leaderboard-container {
+        height: 600px;
+        width: 660px;
+    }
+}

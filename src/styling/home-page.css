@@ -1,22 +1,26 @@
 .main-container {
     padding-left: 10%;
     padding-right: 10%;
-    height: 80vh;
+    height: 100vh;
     padding-top: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 1800px;
+    align-items: center;
     background-color: #2b3137;
+    position: absolute;
+    row-gap: 0;
+    min-width: 850px;
+
 }
 
 
 .top-left {
-
+    height: 200px;
 }
 
 .top-right {
-    margin-left: 50px;
+    height: 200px;
 
 }
 
@@ -26,4 +30,19 @@
 
 .bottom-right {
     margin-left: 60px;
+}
+
+@media (max-width: 1199px) { /* Adjust 1199px to one pixel less than your breakpoint */
+    .main-container {
+        row-gap: 50px; /* Sets the gap between rows */
+    }
+    .bottom-right {
+        margin-left: 0px;
+    }
+    
+}
+@media (max-width: 1490px) { /* Adjust 1199px to one pixel less than your breakpoint */
+    .main-container {
+        row-gap: 50px; /* Sets the gap between rows */
+    }
 }
