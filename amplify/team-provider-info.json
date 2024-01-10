@@ -28,6 +28,10 @@
         "getSearchUserDataLambda": {
           "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
           "s3Key": "amplify-builds/getSearchUserDataLambda-6d547a472b5568416e75-build.zip"
+        },
+        "getFriendsLambda": {
+          "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
+          "s3Key": "amplify-builds/getFriendsLambda-53344130384c30366a42-build.zip"
         }
       },
       "api": {

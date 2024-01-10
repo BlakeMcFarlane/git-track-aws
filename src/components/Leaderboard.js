@@ -17,15 +17,21 @@ const Leaderboard = ({ userRankings }) => {
             <p>score</p>
           </div>
           <div className='title-item' id='three'>
-            <p>nationality</p>
+            <p>location</p>
           </div>
         </div>
       </div>
       <div className='leaderboard-list'>
         {userRankings.map(user => (
           <div key={user.id} className='leaderboard-item'>
-            <div className='leaderboard-names'>{user.name}</div>
-            <div>{user.score}</div>
+            <div className='leaderboard-names'>
+              <div className='user-image'>
+                <img className='image-url' src={user.imageUrl} />
+              </div>
+              {user.name}
+            </div>
+            <div className='score-item'>{user.score}</div>
+            <div className='location-item'>{user.location}</div>
           </div>
         ))}
       </div>

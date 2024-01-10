@@ -8,7 +8,7 @@ import '../styling/home-page.css'
 import { generateClient } from 'aws-amplify/api';
 import {
   userByName,
-  listUserLeaderboards
+  usersByScore
 } from '../graphql/queries'; 
 import {
   createUserLeaderboard as createUserLeaderboardMutation,
@@ -62,7 +62,7 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
         }
         repoScoreInfo = await getRepoData(userInfo.login)
 
-        userExist(userInfo.login, repoScoreInfo)
+        userExist(userInfo.login, userInfo.avatar_url, repoScoreInfo, userInfo.location)
         console.log(userInfo)
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -79,7 +79,7 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
     return searchUserData
   }
 
-  async function userExist(username, repoScoreInfo) {
+  async function userExist(username, profile_pic, repoScoreInfo, location) {
     try {
       const curUser = await client.graphql({ 
         query: userByName,
@@ -91,25 +91,29 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
         fetchUsers();
       } else {
         console.log("User does not exist, creating user");
-        await createUser(username, repoScoreInfo).then(fetchUsers)
+        await createUser(username, profile_pic, repoScoreInfo, location).then(fetchUsers)
       }
     } catch (error) {
       console.error('Error in userExist:', error);
     }
   }
   
-
+// This function generates the GraphQL leaderboard
   async function fetchUsers() {
     try {
-      const userData = await client.graphql({ query: listUserLeaderboards });
-      const usersFromAPI = userData.data.listUserLeaderboards.items;
+      const userData = await client.graphql({ 
+        query: usersByScore,
+        variables: { type:"userLeaderboard", sortDirection:"DESC", limit:10 }
+      });
+      const usersFromAPI = userData.data.usersByScore.items;
+      console.log("USERS + " + usersFromAPI)
       setUsers(usersFromAPI);
     } catch (err) {
       console.error('Error fetching users:', err);
     }
   }
 
-  async function createUser(username, repoScoreInfo) {
+  async function createUser(username, profile_pic, repoScoreInfo, location) {
     let score = 0;
     Object.values(repoScoreInfo).forEach(value => {
       score += Number(value);
@@ -118,7 +122,11 @@ const HomePage = ({ searchUserData, searchUserRepos }) => {
     const userToCreate = {
       name: username,
       score: Number(scoreint),
+      imageUrl: profile_pic,
+      type: "userLeaderboard",
+      location: location
     };
+    console.log("IMAGE + "+profile_pic)
     try {
       const newUser = await client.graphql({
         query: createUserLeaderboardMutation,

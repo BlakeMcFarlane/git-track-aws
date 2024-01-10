@@ -9,6 +9,9 @@ export const onCreateUserLeaderboard = /* GraphQL */ `
       id
       name
       score
+      imageUrl
+      type
+      location
       createdAt
       updatedAt
       __typename
@@ -23,6 +26,9 @@ export const onUpdateUserLeaderboard = /* GraphQL */ `
       id
       name
       score
+      imageUrl
+      type
+      location
       createdAt
       updatedAt
       __typename
@@ -37,6 +43,9 @@ export const onDeleteUserLeaderboard = /* GraphQL */ `
       id
       name
       score
+      imageUrl
+      type
+      location
       createdAt
       updatedAt
       __typename

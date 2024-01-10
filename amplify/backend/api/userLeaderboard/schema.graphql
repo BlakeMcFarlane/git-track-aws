@@ -2,9 +2,14 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
+
 type userLeaderboard @model
   @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String! @index(name: "byName", queryField: "userByName", sortKeyFields: ["score"])
-  score: Int!
+  score: Int! 
+  imageUrl: String
+  type: String! @index(name:"usersByScore", queryField: "usersByScore", sortKeyFields: ["score"])
+  location: String
 }
+

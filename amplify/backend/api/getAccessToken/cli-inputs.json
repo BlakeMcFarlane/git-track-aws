@@ -28,6 +28,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/getFriends": {
+      "name": "/getFriends",
+      "lambdaFunction": "getFriendsLambda",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

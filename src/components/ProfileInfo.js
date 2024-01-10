@@ -1,25 +1,51 @@
 import React from 'react'
 import '../styling/profile-info.css'
+import { useEffect } from 'react'
 
-const ProfileInfo = ({ userData, propUserData }) => {
+const ProfileInfo = ({ userData }) => {
+
+    useEffect(() => {
+        getFriends(userData.login)
+    })
 
     const now = new Date();
     const creationDate = new Date(userData.created_at); // Parse the creation date
 
     // Calculate difference in years
     let years = now.getFullYear() - creationDate.getFullYear();
+
     // Adjust for month and day
-    creationDate.setFullYear(now.getFullYear());
-    if (now < creationDate) {
+    if (now.getMonth() < creationDate.getMonth() || 
+        (now.getMonth() === creationDate.getMonth() && now.getDate() < creationDate.getDate())) {
         years--;
-        creationDate.setFullYear(creationDate.getFullYear() - 1);
     }
 
     // Calculate the remaining months
-    const months = now.getMonth() - creationDate.getMonth();
+    let months = now.getMonth() - creationDate.getMonth();
+    if (now.getDate() < creationDate.getDate()) {
+        months--;
+        if (months < 0) {
+            months += 12; // Adjust months when it goes negative
+        }
+    }
 
     // Format the account age
     const accountAge = `${years} year${years !== 1 ? 's' : ''} and ${months} month${months !== 1 ? 's' : ''}`;
+
+
+    const getFriends = async (username) => {
+        let data;
+        const response = await fetch(`https://6xsg7yktw4.execute-api.us-east-2.amazonaws.com/staging/getFriends/`, {
+            method: "GET",
+            headers: { "Authorization": "Bearer " + localStorage.getItem("accessToken")},
+            username:username
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch friend data');
+        }
+        data = await response.json();
+        console.log(data)
+    };
 
     return (
         <div className='profile-container'>

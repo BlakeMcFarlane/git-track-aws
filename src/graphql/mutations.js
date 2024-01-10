@@ -10,6 +10,9 @@ export const createUserLeaderboard = /* GraphQL */ `
       id
       name
       score
+      imageUrl
+      type
+      location
       createdAt
       updatedAt
       __typename
@@ -25,6 +28,9 @@ export const updateUserLeaderboard = /* GraphQL */ `
       id
       name
       score
+      imageUrl
+      type
+      location
       createdAt
       updatedAt
       __typename
@@ -40,6 +46,9 @@ export const deleteUserLeaderboard = /* GraphQL */ `
       id
       name
       score
+      imageUrl
+      type
+      location
       createdAt
       updatedAt
       __typename
