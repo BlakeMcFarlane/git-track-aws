@@ -15,12 +15,14 @@ const App = () => {
 
   return (
     <Router>
-      <div className="container">
-        <Routes>
-          <Route path='/' element={<LoginPage />} />
-          <Route path='/user' element={<UserPageWrapper />} />
-        </Routes>
-      </div>
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <div className="container">
+          <Routes>
+            <Route path='/' element={<LoginPage />} />
+            <Route path='/user' element={<UserPageWrapper />} />
+          </Routes>
+        </div>
+      </meta>
     </Router>
   );
 }
