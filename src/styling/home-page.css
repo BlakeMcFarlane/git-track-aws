@@ -1,83 +1,109 @@
 .main-container {
     height: 100%;
-    padding-top: 50px;
+    padding-top: 30px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     background-color: #2b3137;
-    position: fixed;
-    row-gap: 0;
-    width:100%;
+    row-gap: 2rem;
     height: 720px;
-
+    max-width: 1230px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 15vh;
 }
-
 
 .top-left {
     height: 200px;
+    width:fit-content;
+    padding-left:1.1rem;
+    padding-right:1.1rem;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
 }
 
 .top-right {
     height: 200px;
-
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
 }
 
 .bottom-left {
-
+    padding-right:1.4rem;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
 }
 
 .bottom-right {
-    margin-left: 60px;
+    padding-left:1.4rem;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
 }
 
-/* Media query for screens larger than 2000px */
-@media (min-width: 1800px) {
-    .main-container {
-        width:1800px; /* This will stop the content from wrapping */
-        justify-content: center;
-    }
-}
-@media (max-width: 1199px) { /* Adjust 1199px to one pixel less than your breakpoint */
-    .main-container {
-        row-gap: 50px; /* Sets the gap between rows */
-        position:initial;
-    }
-    .bottom-right {
-        margin-left: 0px;
-    }
-    
-}
-@media (max-width: 1490px) { /* Adjust 1199px to one pixel less than your breakpoint */
-    .main-container {
-        row-gap: 50px; /* Sets the gap between rows */
-        position:initial;
-    }
-}
-
-@media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
+@media (max-width: 1250px) {
     .main-container {
         height: 100%;
+        padding-top: 50px;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        row-gap: 90px;
-        width:100%;
-        padding-right: 10px;
-        padding-left: 10px;
-        position:static;
-        
+        background-color: #2b3137;
+        row-gap: 2rem;
+        height: 720px;
+        max-width: 1230px;
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
+}
+
+@media (max-width: 430px) { /* Adjust 1199px to one pixel less than your breakpoint */
+    .main-container {
+        height: 100%;
+        padding-top: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2b3137;
+        row-gap: 2rem;
+        height: 720px;
+        max-width: 428px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    
     .top-left {
-        height: 50px;
-        width:100%
+        height: 150px;
+        width:fit-content;
+        padding-left:0rem;
+        padding-right:0rem; 
+        width: 100%;
     }
     
     .top-right {
-        height: 75px;
-    
+        height: 170px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
     }
+    
+    .bottom-left {
+        padding-left:0px;
+        padding-right:0px;
+        display: flex;
+        justify-content: center;
+        width: fit-content;
+    }
+    
     .bottom-right {
-        margin-left: 0px;
+        padding-left:0px;
+        padding-right:0px;
+        display: flex;
+        justify-content: center;
+        width: fit-content;
     }
 }

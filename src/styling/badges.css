@@ -12,11 +12,15 @@
 .chart {
     width: 650px;
 }
-@media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
+
+@media (max-width: 430px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .badges-container {
-        width: 200px;
+        width: 100%;
         height:0px;
         font-family: 'Bebas Neue', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .label {
@@ -24,7 +28,8 @@
         font-size: 12pt;
     }
     .chart {
-        width: 370px;
-        padding-bottom: 50px;
+        width: 95%;
+        padding-bottom: 0px;
+        display: flex;
     }
 }

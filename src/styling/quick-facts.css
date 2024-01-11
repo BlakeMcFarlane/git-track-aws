@@ -38,12 +38,17 @@
     color: #fafbfcb9;
     font-size: 14pt;
 }
-@media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
+.fact-box-skeleton {
+    height:90px;
+}
+
+
+@media (max-width: 430px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .facts-container {
         height: 64.5px;
         display: flex;
         justify-content: space-between;
-        width:375px;
+        width:100%;
     }
     
     .fact-box {
@@ -69,5 +74,8 @@
         color:#2dba4e;
         font-size: 7pt;
         margin-top: -13px;
+    }
+    .fact-box-skeleton {
+        height: 64.5px;
     }
 }

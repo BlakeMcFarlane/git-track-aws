@@ -86,31 +86,56 @@
     font-family: 'Roboto Mono', monospace;
     font-weight: 200;
 }
+.main-container {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 90px;
+    width:100vw;
+    padding-right: 10px;
+    padding-left: 10px;
+    position:static;
+    
+}
+.top-left {
+    height: 50px;
+    width:100%
+}
 
-@media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
+.top-right {
+    height: 75px;
+
+}
+.bottom-right {
+    margin-left: 0px;
+}
+
+
+@media (max-width: 430px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .profile-container {
         height: 105px;
-        width: 100%;
+        width: 90%;
         display: flex;
     }
     .profile-pic {
-        height:100px;
         background-color: black;
-        width: 100px;
+        width: 30%;
         overflow: hidden; 
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.301);
     }
-    
+
     .profile-pic img {
         width: 100%;   
         height: 100%; 
         object-fit: cover; 
         object-position: center; 
     }
-    
+
     .info {
-        width: 255px;
-        margin-left: 0px;
+        width: 70%;
+        margin-left: 1rem;
 
     }.profile-name {
         font-size: 13pt;
@@ -118,19 +143,18 @@
         padding:0;
         color: #ffffff;
         font-family: 'Bebas Neue', sans-serif;
-        
     }
-    
+
     .profile-name h1 {
         text-align: center;
     }
-    
+
     .stat { 
         display:flex;
         height:18px;
         align-items: center;
     }
-    
+
     .stat-bio {
         display: flex;
         height:68px;
@@ -148,7 +172,7 @@
         width:100%;
         max-height: 200px; /* Adjust as needed */
         overflow: hidden;
-    
+
     }
     .bio p {
         color: #cecece;
@@ -157,17 +181,17 @@
         font-family: 'Roboto Mono', monospace;
         width:100%;
         height:30px;
-    
-    
+
+
     }
-    
+
     .stat p {
         color: #fafbfcb9;
         font-family: 'Roboto Mono', monospace;
         font-size: 10pt;
         margin-left: 5px;
     }
-    
+
     .value {
         color: #ffffff;
         font-size:10pt;
@@ -176,7 +200,99 @@
         margin-right:15px;
         font-family: 'Roboto Mono', monospace;
     }
-    
+
+
+}
+
+
+@media (max-width: 390px) { /* Adjust 1199px to one pixel less than your breakpoint */
+       .profile-container {
+        height: 105px;
+        width:100%;
+        display: flex;
+    }
+    .profile-pic {
+        background-color: black;
+        width: 30%;
+        overflow: hidden; 
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.301);
+    }
+
+    .profile-pic img {
+        width: 100%;   
+        height: 100%; 
+        object-fit: cover; 
+        object-position: center; 
+    }
+
+    .info {
+        width: 70%;
+        margin-left: 1rem;
+
+    }.profile-name {
+        font-size: 13pt;
+        margin: 0;
+        padding:0;
+        color: #ffffff;
+        font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .profile-name h1 {
+        text-align: center;
+    }
+
+    .stat { 
+        display:flex;
+        height:18px;
+        align-items: center;
+    }
+
+    .stat-bio {
+        display: flex;
+        height:68px;
+        margin-top: 5px;
+        margin-right: 15px;
+    }
+    .bio-key {
+        color: #fafbfcb9;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 8pt;
+        margin-left: 5px;
+    }
+    .bio {
+        margin-left:20px;
+        width:100%;
+        max-height: 200px; /* Adjust as needed */
+        overflow: hidden;
+
+    }
+    .bio p {
+        color: #cecece;
+        font-size: 8pt;
+        text-align: right;
+        font-family: 'Roboto Mono', monospace;
+        width:100%;
+        height:30px;
+
+
+    }
+
+    .stat p {
+        color: #fafbfcb9;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 10pt;
+        margin-left: 5px;
+    }
+
+    .value {
+        color: #ffffff;
+        font-size:10pt;
+        text-align: right;
+        flex:1;
+        margin-right:15px;
+        font-family: 'Roboto Mono', monospace;
+    }
+
 
 }
 

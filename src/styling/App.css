@@ -1,17 +1,8 @@
-body, * {
+* {
     margin: 0;
     padding-left: 0;
 }
 html {
     background-color: #2b3137;
-    display: flex;
-    justify-content: center;
-}
-.container {
-    width:100%
-}
-@media (max-width: 375px) { /* Adjust 1199px to one pixel less than your breakpoint */
-    .container {
-        width:375px;
-    }
+    width: 100%;
 }

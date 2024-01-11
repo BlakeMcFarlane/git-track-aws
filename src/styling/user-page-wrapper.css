@@ -1,4 +1,16 @@
 .page-wrapper {
-    width:100%;
-    background-color: rgba(0, 255, 255, 0.137);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
+.page-main {
+    justify-content: center;
+    width:100%;
+    display: flex;
+}
+@media (max-width:500) {
+    .page-main {
+        width: 100%;
+    }
+}
+

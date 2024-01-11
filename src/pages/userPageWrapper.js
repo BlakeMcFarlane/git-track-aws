@@ -7,7 +7,6 @@ import { useState } from 'react';
 const UserPageWrapper = () => {
     const [userData, setUserData] = useState(null);         // JSON     {}
     const [userRepos, setUserRepos] = useState(null);       // Array    []
-    
 
     // Function invoke on user search
     const handleSearch = async (username) => {
@@ -41,8 +40,10 @@ const UserPageWrapper = () => {
     };
     return (
             <div className='page-wrapper'>
-                <Navbar onSearch={ handleSearch } />
-                <HomePage searchUserData={ userData } searchUserRepos={ userRepos } />
+                <div className='page-main'>
+                    <Navbar onSearch={ handleSearch } />
+                    <HomePage searchUserData={ userData } searchUserRepos={ userRepos } />
+                </div>
             </div>
     );
     };

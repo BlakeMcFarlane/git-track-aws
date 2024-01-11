@@ -15,7 +15,7 @@ const Badges = ({ userData }) => {
 
   return (
     <div className='badges-container'>
-          <img src={`https://ghchart.rshah.org/666666/${username}`} alt="Name Your Github chart" className='chart' />
+        <img src={`https://ghchart.rshah.org/666666/${username}`} alt="Name Your Github chart" className='chart' />
     </div>
   )
 }
