@@ -9,11 +9,14 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const QuickFacts = ({ userRepos, userRank, suffix, isLoading }) => {
     const [totalCommits, setTotalCommits] = useState(0);
     const [languages, setLanguages] = useState([]);
+    const [forks, setForks] = useState(0)
 
     useEffect(() => {
 
         let total = 0;
         let allLanguages = new Set();
+
+        let totalForks = 0;
         
         userRepos.forEach(repo => {
             if (repo.totalCommits)
@@ -21,12 +24,14 @@ const QuickFacts = ({ userRepos, userRank, suffix, isLoading }) => {
             Object.keys(repo.languages || {}).forEach(language => {
                 allLanguages.add(language);  
             });
+            totalForks += repo.forks_count
         });
+
         setTotalCommits(Number(total));
         setLanguages([...allLanguages]); 
-        console.log("HABABAB + ", userRepos)
+        setForks(totalForks)
 
-    }, [userRepos] );
+    }, [userRepos]);
 
     return (
         <SkeletonTheme baseColor='#393f44' highlightColor='#666666' duration={2} borderRadius={15}>
@@ -45,8 +50,8 @@ const QuickFacts = ({ userRepos, userRank, suffix, isLoading }) => {
                             <p>commits</p>
                         </div>
                         <div className='fact-box'>
-                            <h1>#</h1>
-                            <p>lines</p>
+                            <h1>{forks}</h1>
+                            <p>forks</p>
                         </div>
                         <div className='fact-box'>
                             <h1>{languages.length}</h1>

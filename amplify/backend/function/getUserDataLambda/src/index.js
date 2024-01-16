@@ -3,10 +3,9 @@ const fetch = (...args) =>
 
 
 exports.handler = async (event) => {
-    console.log(`EVENT: ${JSON.stringify(event)}`);
 
     const authorizationHeader = event.headers.Authorization || event.headers.authorization;
-    console.log("HEADER   +  " + authorizationHeader)
+    
     try {
         const response = await fetch("https://api.github.com/user", {
             method: "GET",

@@ -30,11 +30,22 @@
     padding:0;
     color: #ffffff;
     font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    height:fit-content
     
 }
 
 .profile-name h1 {
     text-align: center;
+}
+
+.profile-name p{
+    font-size: 10pt;
+    margin: 0;
+    padding:0;
+    color: #ffffff;
+    font-family: 'Bebas Neue', sans-serif;
+    
 }
 
 .stat { 
@@ -71,45 +82,47 @@
 
 }
 
-.stat p {
-    color: #fafbfcb9;
+.stat-label {
+    color: #ecececc2;
     font-family: 'Roboto Mono', monospace;
     font-size: 10pt;
 }
 
 .value {
     color: #ffffff;
-    font-size: 15pt;
+    font-size: 10pt;
     text-align: right;
     flex:1;
     margin-right:15px;
     font-family: 'Roboto Mono', monospace;
     font-weight: 200;
 }
-.main-container {
-    height: 100%;
+.activity-section {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    row-gap: 90px;
-    width:100vw;
-    padding-right: 10px;
-    padding-left: 10px;
-    position:static;
-    
 }
-.top-left {
-    height: 50px;
-    width:100%
+.activity-section p{
+    font-family: 'Roboto Mono', monospace;
+    padding:0;
+    margin:0;
+    font-size: 8pt;
 }
-
-.top-right {
-    height: 75px;
-
+.activity-status {
+    background-color: #2dba4e;
+    width:10px;
+    height:10px;
+    margin-top: 10px;
+    margin-left:20px;
+    border-radius: 50%; /* Makes it a circle */
+    box-shadow: 0 0 10px 1px #2dba4e; /* Glowing effect */
 }
-.bottom-right {
-    margin-left: 0px;
+.activity-status-absent {
+    background-color: #ba2d2d;
+    width:10px;
+    height:10px;
+    margin-top: 10px;
+    margin-left:20px;
+    border-radius: 50%; /* Makes it a circle */
+    box-shadow: 0 0 10px 1px #ba3d2d; /* Glowing effect */
 }
 
 
@@ -185,23 +198,6 @@
 
     }
 
-    .stat p {
-        color: #fafbfcb9;
-        font-family: 'Roboto Mono', monospace;
-        font-size: 10pt;
-        margin-left: 5px;
-    }
-
-    .value {
-        color: #ffffff;
-        font-size:10pt;
-        text-align: right;
-        flex:1;
-        margin-right:15px;
-        font-family: 'Roboto Mono', monospace;
-    }
-
-
 }
 
 
@@ -276,23 +272,6 @@
 
 
     }
-
-    .stat p {
-        color: #fafbfcb9;
-        font-family: 'Roboto Mono', monospace;
-        font-size: 10pt;
-        margin-left: 5px;
-    }
-
-    .value {
-        color: #ffffff;
-        font-size:10pt;
-        text-align: right;
-        flex:1;
-        margin-right:15px;
-        font-family: 'Roboto Mono', monospace;
-    }
-
 
 }
 

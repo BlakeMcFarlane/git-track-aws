@@ -16,7 +16,6 @@ const LoginPage = () => {
         window.location.assign("https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID)
     }
 
-
      // Render method
     return (
         <div className='login-container'>

@@ -5,10 +5,10 @@ const fetch = (...args) =>
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 exports.handler = async (event) => {
-    console.log(`EVENT: ${JSON.stringify(event)}`);
 
     const authHeader = event.headers.Authorization || event.headers.authorization;
     const username = event.pathParameters.username
+    
     try {
         const userResponse = await fetch(`https://api.github.com/users/${username}`, {
             method: "GET",
@@ -18,12 +18,12 @@ exports.handler = async (event) => {
     
         return {
             statusCode: 200,
-              headers: {
-                  "Access-Control-Allow-Origin": "*",
-                  "Access-Control-Allow-Headers": "*",
-                  "Content-Type": "application/json"
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*",
+                "Content-Type": "application/json"
 
-              },
+            },
             body: JSON.stringify(searchedUser),
         };
     } catch (error) {

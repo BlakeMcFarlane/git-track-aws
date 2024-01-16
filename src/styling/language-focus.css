@@ -2,7 +2,6 @@
     background-color: #2b3137;
     height:100%;
     width:100%;
-    padding-left: 10px;
     border-radius: 10px;
     box-shadow: inset -1px -1px 7px #000000bb;
 }
@@ -27,7 +26,6 @@
     align-items: center;
 }
 
-
 .ratio {
     height:80%;
     width:80%;
@@ -43,69 +41,80 @@
     color:rgb(105, 104, 104);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 24pt;
-
 }
-
-.body {
-    height:50%;
-}
-
-.lang-body {
-    height:50%
-}
-
 
 .repos {
-    height:30%;
+    height:65%;
+    padding:0;
+    margin:0;
+    width:100%;
     display: flex;
+    padding-top: 15px;
     justify-content: center;
-
 }
-.repo {
-    height:90%;
-    width:85%;
+
+.repo-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:90%;
+    justify-content: center;
+}
+
+.repo-list a{
+    color: inherit; /* Makes the text color the same as the parent element */
+    text-decoration: none; /* Removes the underline */
+    font-weight: normal; /* Resets bold styling, if any */
+    width:100%;
+}
+
+.repo-item {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    margin-bottom: 7px; /* Space between rows */
+    height:32px;
+    color: white;
+    background-color: black;
+    width:100%;
+    justify-content: space-between;
+    padding:0
 }
-.repo p {
+
+.repo-item p {
     margin: 0;
     padding:0;
     font-family: 'Roboto Mono', monospace;
     color:rgba(240, 248, 255, 0.74);
     font-size: 10pt;
-
 }
-.top-repo {
-    background-color: rgb(29, 29, 29);
-    width:70%;
-    height:80%;
+
+.repo-item-name {
+    width:45%;
+    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.repo-item-forks {
+    width:30%;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    font-family: 'Roboto Mono', monospace;
+    column-gap: 10px;
+    
 }
-.top-repo a{
-    color: inherit; /* Makes the text color the same as the parent element */
-    text-decoration: none; /* Removes the underline */
-    font-weight: normal; /* Resets bold styling, if any */
-    color: inherit; /* Makes the text color the same as the parent element */
-    text-decoration: none; /* Removes the underline */
-    font-weight: normal; /* Resets bold styling, if any */
-}
-.repo-item {
-    text-align: center;
+.repo-item-stars {
+    width:20%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
+    justify-content: center;
+    column-gap: 10px;
 }
 
-.git-logo {
-    width: 20px;
-    padding: 0;
+.fork-icon {
     margin:0;
-    padding-right: 10px;
+    padding:0;
+    height:10px
 }
 .language-skeleton {
     width:140px;
@@ -170,38 +179,7 @@
         display: flex;
         justify-content: center;
     }
-    .repo {
-        height:90%;
-        width:85%;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        flex-direction: column;
-    }
-    .repo p {
-        margin: 0;
-        padding:0;
-        font-family: 'Roboto Mono', monospace;
-        color:rgba(240, 248, 255, 0.74);
-        font-size: 10pt;
-    }
-    .top-repo {
-        background-color: rgb(29, 29, 29);
-        width:100%;
-        height:60%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Roboto Mono', monospace;
-    }
-    .top-repo a{
-        color: inherit; /* Makes the text color the same as the parent element */
-        text-decoration: none; /* Removes the underline */
-        font-weight: normal; /* Resets bold styling, if any */
-        color: inherit; /* Makes the text color the same as the parent element */
-        text-decoration: none; /* Removes the underline */
-        font-weight: normal; /* Resets bold styling, if any */
-    }
+
     .repo-item {
         text-align: center;
         display: flex;
@@ -211,12 +189,6 @@
         
     }
     
-    .git-logo {
-        width: 20px;
-        padding: 0;
-        margin:0;
-        padding-right: 10px;
-    }
     .language-skeleton {
         width:100px;
         height:28px
@@ -271,68 +243,85 @@
         font-size: 17pt;
     }
     
-    .body {
-        height:50%;
-    }
-    
-    .lang-body {
-        height:50%
-    }
+
+
     .repos {
-        height:30%;
+        height:50%;
+        padding:0;
+        margin:0;
+        width:100%;
         display: flex;
+        padding-top: 15px;
         justify-content: center;
     }
-    .repo {
-        height:90%;
-        width:85%;
+    
+    .repo-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width:90%;
+        justify-content: center;
+    }
+    
+    .repo-list a{
+        color: inherit; /* Makes the text color the same as the parent element */
+        text-decoration: none; /* Removes the underline */
+        font-weight: normal; /* Resets bold styling, if any */
+        width:100%;
+    }
+
+    .repo-item {
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        flex-direction: column;
+        margin-bottom: 7px; /* Space between rows */
+        height:32px;
+        color: white;
+        background-color: black;
+        width:100%;
+        justify-content: space-between;
+        padding:0
     }
-    .repo p {
+    
+    .repo-item p {
         margin: 0;
         padding:0;
         font-family: 'Roboto Mono', monospace;
         color:rgba(240, 248, 255, 0.74);
-        font-size: 10pt;
-    }
-    .top-repo {
-        background-color: rgb(29, 29, 29);
-        width:100%;
-        height:60%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Roboto Mono', monospace;
-    }
-    .top-repo a{
-        color: inherit; /* Makes the text color the same as the parent element */
-        text-decoration: none; /* Removes the underline */
-        font-weight: normal; /* Resets bold styling, if any */
-        color: inherit; /* Makes the text color the same as the parent element */
-        text-decoration: none; /* Removes the underline */
-        font-weight: normal; /* Resets bold styling, if any */
-    }
-    .repo-item {
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: row;
-        
+        font-size: 9pt;
     }
     
-    .git-logo {
-        width: 20px;
-        padding: 0;
+    .fork-icon {
         margin:0;
-        padding-right: 10px;
+        padding:0;
+        height:9px
     }
     .language-skeleton {
         width:100px;
         height:28px
+    }
+
+    .repo-item-name {
+        width:45%;
+        margin-left: 3px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+    }
+    .repo-item-forks {
+        width:30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 5px;
+        
+    }
+    .repo-item-stars {
+        width:20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 5px;
     }
     
 }

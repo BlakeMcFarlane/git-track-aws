@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../styling/leaderboard.css';
 
-const Leaderboard = ({ userRankings }) => {
+const Leaderboard = ({ userRankings, username }) => {
+  const userRefs = useRef({});
 
+  useEffect(() => {
+    if (username && userRefs.current[username]) {
+      userRefs.current[username].scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [username, userRankings]);
   
   return (
     <div className='leaderboard-container'>
@@ -24,11 +30,16 @@ const Leaderboard = ({ userRankings }) => {
         </div>
       </div>
       <div className='leaderboard-list'>
-        {userRankings.map(user => (
-          <div key={user.id} className='leaderboard-item'>
+        {userRankings.map((user, index) => (
+          <div 
+            key={user.id} 
+            className={`leaderboard-item ${user.name === username ? 'highlighted-user' : ''}`} 
+            ref={el => userRefs.current[user.name] = el}
+          >
+            <div className='rank-order'>{index + 1}</div> {/* Ranking number */}
             <div className='leaderboard-names'>
               <div className='user-image'>
-                <img className='image-url' src={user.imageUrl} />
+                <img className='image-url' src={user.imageUrl} alt={user.name} />
               </div>
               {user.name}
             </div>

@@ -5,7 +5,7 @@
     box-shadow: -1px -1px 5px rgba(0, 0, 0, 0.527);
 }
 .leaderboard-list {
-    padding-left: 20px;
+    padding-left: 10px;
     font-family: 'Roboto Mono', monospace;
     font-size: 10pt;
     max-height: 300px;
@@ -42,7 +42,7 @@
     width:90px
 }
 .leaderboard-names {
-    width:200px;
+    width:190px;
     display: flex;
     
 }
@@ -55,7 +55,7 @@
     width:100%;
 }
 .score-item {
-    width:110px
+    width:80px
 }
 .location-item {
     white-space: nowrap;
@@ -76,6 +76,41 @@
     font-size: 10pt;
     font-family: 'Roboto Mono', monospace;
 }
+
+@keyframes shimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    100% {
+      background-position: 468px 0; 
+    }
+  }
+  
+  .highlighted-user {
+    background-color: #2f3438;
+    padding-top: 10px;
+    border-radius: .6rem;
+    position: relative;
+    overflow: hidden;
+  
+    /* Shimmer effect */
+    background: linear-gradient(to right, #2f3438 0%, #6f73786e 20%, #2f3438 40%, #2f3438 100%);
+    background-size: 800px 104px;
+    animation: shimmer 6s linear infinite;
+  }
+
+  
+
+.rank-order {
+    text-align: center;
+    width: 40px;
+    color:rgb(212, 212, 212)
+    /* Other styling properties */
+  }
+  
+
+
+  
 @media (max-width: 1199px) { /* Adjust 1199px to one pixel less than your breakpoint */
     .leaderboard-container {
         height: 620px;
@@ -127,7 +162,7 @@
         width:90px
     }
     .leaderboard-names {
-        width:52%;
+        width:40%;
         display: flex;
         
     }
@@ -159,7 +194,7 @@
     .leaderboard-list {
         padding-left: 15px;
         font-family: 'Roboto Mono', monospace;
-        font-size: 9.5pt;
+        font-size: 9pt;
         max-height: 303px;
         overflow-y: auto;  /* This enables vertical scrolling */
     }
@@ -193,7 +228,7 @@
         width:90px
     }
     .leaderboard-names {
-        width:52%;
+        width:40%;
         display: flex;
         
     }
@@ -206,7 +241,7 @@
         width:100%;
     }
     .score-item {
-        width:25%
+        width:20%
     }
     .location-item {
         white-space: nowrap;

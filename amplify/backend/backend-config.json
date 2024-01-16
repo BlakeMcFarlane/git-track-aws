@@ -33,6 +33,14 @@
           ],
           "category": "function",
           "resourceName": "getSearchUserDataLambda"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "getLastActivityLambda"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -62,6 +70,11 @@
       "service": "Lambda"
     },
     "getFriendsLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getLastActivityLambda": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -112,6 +125,22 @@
         {
           "category": "function",
           "resourceName": "getFriendsLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_getLastActivityLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getLastActivityLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_getLastActivityLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getLastActivityLambda"
         }
       ]
     },

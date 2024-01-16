@@ -28,6 +28,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/getLastActivity/{username}": {
+      "name": "/getLastActivity/{username}",
+      "lambdaFunction": "getLastActivityLambda",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styling/profile-info.css'
 
-const ProfileInfo = ({ userData, userFriends, userRank }) => {
+const ProfileInfo = ({ userData, lastEvent }) => {
 
 
     const now = new Date();
@@ -37,18 +37,27 @@ const ProfileInfo = ({ userData, userFriends, userRank }) => {
             <div className='info'>
                 <div className='profile-name'>
                     <h1>{userData.login}</h1>
+                    { lastEvent ?
+                    (<div className='activity-section' title='Recently Active'>
+                        <div className='activity-status' ></div>
+                    </div>)
+                    :
+                    (<div className='activity-section' title='Recently Active'>
+                        <div className='activity-status-absent' ></div>
+                    </div>)
+                    }
                 </div>
                 <div className='profile-stats'>
                     <div className='stat'>
-                        <p>repositories</p>
+                        <p className='stat-label'>repositories</p>
                         <p className='value'>{userData.public_repos}</p>
                     </div>
                     <div className='stat'>
-                        <p>followers</p>
+                        <p className='stat-label'>followers</p>
                         <p className='value'>{userData.followers}</p>
                     </div>
                     <div className='stat'>
-                        <p>account Age</p>
+                        <p className='stat-label'>account age</p>
                         <p className='value'>{accountAge}</p>
                     </div> 
                     <div className='stat-bio'>

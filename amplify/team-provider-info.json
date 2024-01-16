@@ -19,19 +19,23 @@
         },
         "getUserDataLambda": {
           "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
-          "s3Key": "amplify-builds/getUserDataLambda-64684a794f46676b4845-build.zip"
+          "s3Key": "amplify-builds/getUserDataLambda-4c6e61716d6773594864-build.zip"
         },
         "getRepoDataLambda": {
           "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
-          "s3Key": "amplify-builds/getRepoDataLambda-4d7a5a744d6654583331-build.zip"
+          "s3Key": "amplify-builds/getRepoDataLambda-58464f6970795078796b-build.zip"
         },
         "getSearchUserDataLambda": {
           "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
-          "s3Key": "amplify-builds/getSearchUserDataLambda-6d547a472b5568416e75-build.zip"
+          "s3Key": "amplify-builds/getSearchUserDataLambda-6f41506134762b317973-build.zip"
         },
         "getFriendsLambda": {
           "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
           "s3Key": "amplify-builds/getFriendsLambda-4371454a58362f352f67-build.zip"
+        },
+        "getLastActivityLambda": {
+          "deploymentBucketName": "amplify-amplify28adc13d4b804-staging-13053-deployment",
+          "s3Key": "amplify-builds/getLastActivityLambda-6c4c6f336e554a38734a-build.zip"
         }
       },
       "api": {

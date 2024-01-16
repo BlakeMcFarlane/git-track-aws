@@ -1,25 +1,8 @@
 import React from 'react'
 import '../styling/languages.css'
-import './LanguageFocus'
 import { useState, useEffect } from 'react'
 import LanguageFocus from './LanguageFocus'
 import Skeleton, { SkeletonTheme} from 'react-loading-skeleton'
-
-
-const findLargestReposByLanguage = (repos) => {
-    const largestRepos = {};
-
-    repos.forEach(repo => {
-        Object.keys(repo.languages).forEach(language => {
-            // Check if this repo is larger than the current largest repo for this language
-            if (!largestRepos[language] || repo.size > largestRepos[language].size) {
-                largestRepos[language] = { ...repo, language }; // Update with the new largest repo
-            }
-        });
-    });
-
-    return largestRepos;
-};
 
 
 const Languages = ({ userRepos, isLoading }) => {
@@ -27,20 +10,21 @@ const Languages = ({ userRepos, isLoading }) => {
     const [selectedLanguage, setSelectedLanguage] = useState();
     const [selectedLanguageRatio, setSelectedLanguageRatio] = useState();
     const [languageRepos, setLanguageRepos] = useState([]); // New state for repositories of the selected language
-    const [largestRepoByLanguage, setLargestRepoByLanguage] = useState({});
+    const [topReposByLanguage, setTopReposByLanguage] = useState({});
+
 
     const colors = ['#FF6666', '#63618E', '#FFA500', '#20B2AA', '#FFD700', '#D3FFCE', '#F633FF', '#FF8833', '#33FF88', '#8833FF'];
 
     useEffect(() => {
         if (!userRepos) 
             return;
-        else if (userRepos) {
-            setLargestRepoByLanguage(findLargestReposByLanguage(userRepos));
-        }
-
+    
+        const calculatedTopReposByLanguage = findTopReposByLanguage(userRepos);
+        setTopReposByLanguage(calculatedTopReposByLanguage);
+    
         const languageCount = {};
         let totalSize = 0;
-
+    
         userRepos.forEach(repo => {
             Object.keys(repo.languages).forEach(language => {
                 const languageValue = repo.languages[language];
@@ -48,21 +32,45 @@ const Languages = ({ userRepos, isLoading }) => {
                 totalSize += languageValue;
             });
         });
-
+    
         const languagePercentages = Object.fromEntries(
             Object.entries(languageCount).map(([language, count]) => [language, (count / totalSize) * 100])
         );
     
         const sortedLanguages = Object.entries(languagePercentages).sort((a, b) => b[1] - a[1]).slice(0, 6);
         setTopLanguages(sortedLanguages);
-
+    
         if (sortedLanguages.length > 0) {
-            setSelectedLanguage(sortedLanguages[0][0]);
+            const firstLanguage = sortedLanguages[0][0];
+            setSelectedLanguage(firstLanguage);
             setSelectedLanguageRatio(sortedLanguages[0][1].toFixed(1));
-            filterLanguageRepos(sortedLanguages[0][0]);
+            setLanguageRepos(calculatedTopReposByLanguage[firstLanguage] || []);
         }
     }, [userRepos]);
 
+
+    const findTopReposByLanguage = (repos, topCount = 5) => {
+        const reposByLanguage = {};
+    
+        repos.forEach(repo => {
+            Object.keys(repo.languages).forEach(language => {
+                if (!reposByLanguage[language]) {
+                    reposByLanguage[language] = [];
+                }
+                reposByLanguage[language].push(repo);
+            });
+        });
+    
+        // Sort and get the top 'topCount' repositories for each language
+        Object.keys(reposByLanguage).forEach(language => {
+            reposByLanguage[language].sort((a, b) => b.size - a.size);
+            reposByLanguage[language] = reposByLanguage[language].slice(0, topCount);
+        });
+    
+        return reposByLanguage;
+    };
+
+    
     const handleLanguageClick = (language) => {
         setSelectedLanguage(language);
         const languageData = topLanguages.find(([lang, _]) => lang === language);
@@ -71,20 +79,15 @@ const Languages = ({ userRepos, isLoading }) => {
         }
     
         // Check if the largest repository for the selected language exists
-        const largestRepo = largestRepoByLanguage[language];
-        if (largestRepo) {
-            setLanguageRepos([largestRepo]); // Pass the largest repo as an array
+        const topRepos = topReposByLanguage[language];
+        if (topRepos) {
+            setLanguageRepos(topRepos);
         } else {
-            setLanguageRepos([]); // If no repo is found, pass an empty array
+            setLanguageRepos([]);
         }
     };
     
-    
 
-    const filterLanguageRepos = (language) => {
-        const filteredRepos = userRepos.filter(repo => repo.languages.hasOwnProperty(language));
-        setLanguageRepos(filteredRepos);
-    };
 
     return (
         <SkeletonTheme baseColor='#393f44' highlightColor='#666666' duration={2} borderRadius={5}>
@@ -121,7 +124,7 @@ const Languages = ({ userRepos, isLoading }) => {
                     <LanguageFocus
                         language={selectedLanguage}
                         languageRatio={selectedLanguageRatio}
-                        repos={largestRepoByLanguage[selectedLanguage] ? [largestRepoByLanguage[selectedLanguage]] : []}
+                        repos={languageRepos}
                         isLoading={isLoading}
                     />
                     </div>

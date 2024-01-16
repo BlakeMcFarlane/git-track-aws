@@ -4,9 +4,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     background-color: #2b3137;
-    row-gap: 2rem;
-    height: 720px;
+    row-gap: 0rem;
+    height: 710px;
     max-width: 1230px;
     padding-left: 2rem;
     padding-right: 2rem;
